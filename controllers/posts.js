@@ -1,9 +1,9 @@
-import postMessage from "../models/postMessage.js";
 
+import WorkerRegistration from "../models/workerRegisteration.js";
 export const getPosts = async (req, res) => {
     try{
-        const postMessages = await postMessage.find();
-        res.status(200).json(postMessages);
+        const WorkerRegistrations = await WorkerRegistration.find();
+        res.status(200).json(WorkerRegistrations);
 
     }catch(err){
         res.status(404).json({message: err.message})
@@ -12,7 +12,7 @@ export const getPosts = async (req, res) => {
 
 export const createPosts = async (req, res) => {
     const post = req.body;
-    const newPost = new postMessage(post);
+    const newPost = new WorkerRegistration(post);
     try{
         await newPost.save();
         res.status(201).json(newPost);
